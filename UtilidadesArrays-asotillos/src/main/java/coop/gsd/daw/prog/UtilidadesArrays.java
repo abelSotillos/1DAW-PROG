@@ -45,7 +45,7 @@ public class UtilidadesArrays
 	public static void invertirArray(int [] array) {
 		int aux=0;
 		int cont=array.length-1;
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < array.length/2; i++) {
 			aux=array[cont];
 			array[cont]=array[i];
 			array[i]=aux;
@@ -87,7 +87,7 @@ public class UtilidadesArrays
 	 * @return devuelve la media de los valores del array
 	 */
 	public static double media(int [] array) {
-		int suma=0;
+		double suma=0;
 		for (int i = 0; i < array.length; i++) {
 			suma=suma+array[i];
 		}
