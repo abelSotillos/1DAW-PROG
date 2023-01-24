@@ -1,4 +1,5 @@
 package coop.gsd.daw.prog;
+
 public class UtilidadesArrays 
 {
 	/** 
@@ -87,7 +88,7 @@ public class UtilidadesArrays
 	 * @return devuelve la media de los valores del array
 	 */
 	public static double media(int [] array) {
-		double suma=0;
+		double suma=0; 
 		for (int i = 0; i < array.length; i++) {
 			suma=suma+array[i];
 		}
