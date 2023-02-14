@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class Proveedor {
 	private String Nombre;
@@ -26,6 +26,7 @@ public class Proveedor {
 				inputFile.close();
 				Scanner inputFile2 = new Scanner( f );
 				ProvPrecio= new Precio[i];
+				System.out.println(i);
 				i=0;
 				while (inputFile2.hasNext()) {
 					String [] line = inputFile2.nextLine().split(" ");
@@ -53,14 +54,54 @@ public class Proveedor {
 	public String getNombre() {
 		return Nombre;
 	}
-	@Override
 	public String toString() {
 		String toString=Nombre+"\n";
 		for (int i = 0; i < ProvPrecio.length; i++) {
 			toString+=ProvPrecio[0].getFecha()+" --> "+ProvPrecio[0].getImporte()+"\n";
 		}
-		return toString;
+		return toString; 
 	}
-	
+	public Precio getPrecioMinimo() {
+		int aux=0;
+		for (int i = 0; i < ProvPrecio.length; i++) {
+			if(ProvPrecio[i].getImporte()<ProvPrecio[aux].getImporte()) {
+				aux=i;
+			}
+		}
+		return ProvPrecio[aux];
+	}
+	public double getMediaMensual(int mes,int año) {
+		if(mes>12||año<1000||año>9999) {return 0;}
+		double suma=0;
+		int cont=0;
+		for (int i = 0; i < ProvPrecio.length; i++) {
+			Date aux=ProvPrecio[i].getFecha();
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(aux);
+			if(mes==calendar.get(Calendar.MONTH)+1) {
+				if(año==calendar.get(Calendar.YEAR)){
+					suma+=ProvPrecio[i].getImporte();  
+					cont++;
+				}
+			}
+		}
+		return suma/cont;
+	}
+	public double getImporte(int dia,int mes,int año) {
+		if(dia>31||mes>12) {return 0;}
+		for (int i = 0; i < ProvPrecio.length; i++) {
+			Date aux=ProvPrecio[i].getFecha();
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(aux);
+			if(dia==calendar.get(Calendar.DAY_OF_MONTH)) {
+				if(mes==calendar.get(Calendar.MONTH)+1) {
+					if(año==calendar.get(Calendar.YEAR)) {
+						return ProvPrecio[i].getImporte();
+					}
+				}
+			}
+		}
+		return 0;
+	}
 	
 }
