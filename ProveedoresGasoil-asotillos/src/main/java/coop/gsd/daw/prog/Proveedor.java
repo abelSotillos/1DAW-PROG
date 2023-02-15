@@ -22,11 +22,13 @@ public class Proveedor {
 				while(inputFile.hasNextLine()) {
 					 inputFile.nextLine();
 					i++;
+					if(i>1000) {
+						System.out.print("Error más de 1000 líneas");
+						System.exit(0);}
 				}
 				inputFile.close();
 				Scanner inputFile2 = new Scanner( f );
 				ProvPrecio= new Precio[i];
-				System.out.println(i);
 				i=0;
 				while (inputFile2.hasNext()) {
 					String [] line = inputFile2.nextLine().split(" ");
