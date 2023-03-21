@@ -59,7 +59,7 @@ public class Proveedor {
 	public String toString() {
 		String toString=Nombre+"\n";
 		for (int i = 0; i < ProvPrecio.length; i++) {
-			toString+=ProvPrecio[0].getFecha()+" --> "+ProvPrecio[0].getImporte()+"\n";
+			toString+=ProvPrecio[i].getFecha()+" --> "+ProvPrecio[i].getImporte()+"\n";
 		}
 		return toString; 
 	}
