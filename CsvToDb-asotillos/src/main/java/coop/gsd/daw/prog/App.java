@@ -2,6 +2,7 @@ package coop.gsd.daw.prog;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +19,7 @@ public class App {
     public static void main( String[] args ) {
         try {
             System.out.println( "ORACLE" );
-            Connection conn1 = DriverManager.getConnection( "jdbc:oracle:thin:@//127.0.0.1/XEPDB1", "lantolin", "changeme" );
+            Connection conn1 = DriverManager.getConnection( "jdbc:oracle:thin:@//127.0.0.1/xe", "system", "clase21" );
             jdbcDemo( conn1 );
             System.out.println( "MySQL" );
             Connection conn2 = DriverManager.getConnection( "jdbc:mysql://127.0.0.1:3306/testdb?serverTimezone=UTC", "lantolin", "changeme" );
@@ -30,7 +31,8 @@ public class App {
 
     private static void jdbcDemo( Connection conn ) throws SQLException {
         Statement stmt = conn.createStatement();
-        ResultSet resultSet = stmt.executeQuery( "SELECT * FROM prueba_tb" );
+        PreparedStatement statement = conn.prepareStatement("INSERT INTO estudiantes_tbl (num_lista, id1, Modulo)VALUES (1, 'asotillos', 'DAW');");
+        ResultSet resultSet = stmt.executeQuery( "SELECT * FROM estudiantes_tbl" );
         while ( resultSet.next() ) {
             System.out.print( "Nombre: " + resultSet.getString( "nombre" ) );
             System.out.print( " Email: " + resultSet.getString( "email" ) + "\n" );

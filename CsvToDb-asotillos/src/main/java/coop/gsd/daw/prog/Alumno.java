@@ -8,5 +8,10 @@ public class Alumno {
 		this.id1 = id1;
 		this.numLista = numLista;
 	}
-	
+	public void conexion() {
+		
+	}
+	public void insertarAlumno() {
+		
+	}
 }
