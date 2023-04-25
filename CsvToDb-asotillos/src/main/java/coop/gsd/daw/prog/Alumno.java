@@ -3,8 +3,11 @@ package coop.gsd.daw.prog;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Alumno {
+	private static Logger LOGGER=Logger.getLogger( "LOGGER TEST 1" );;
 	private String Modulo,id1;
 	private int numLista;
 	public Alumno(String modulo, String id1, int numLista) {
@@ -24,5 +27,6 @@ public class Alumno {
     	pstmt.setString(3, this.Modulo);
     	pstmt.executeUpdate();
     	pstmt.close();
+    	LOGGER.log( Level.INFO, "Usuario "+this.id1+" Insertado en la BBDD" );
     }
 }

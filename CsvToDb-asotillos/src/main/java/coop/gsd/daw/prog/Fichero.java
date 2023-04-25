@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Fichero {
+	private static Logger LOGGER= Logger.getLogger( "LOGGER TEST 1" );;
 	private Alumno [] Alumnos=new Alumno[10000];
 	private int lineas;
 	/**Abre el fichero y crea un alumno por cada línea
@@ -20,13 +23,14 @@ public class Fichero {
 				String [] line = inputFile.nextLine().split(",");
 				int num=Integer.parseInt(line[1]);
 				Alumnos[i]=new Alumno(line[0],line[2],num);
+				LOGGER.log( Level.INFO, "Usuario "+line[2]+" Insertado en la BBDD" );
 				i++;
 			}
 			lineas=i;
 			inputFile.close();
 		} 
 		catch (FileNotFoundException e) {
-			System.err.println("ERROR: no se puede abrir el fichero");
+			LOGGER.log(Level.WARNING,"ERROR: no se puede abrir el fichero");
 		}
 	
 	}
@@ -44,7 +48,7 @@ public class Fichero {
 				}
 	            conn.close();
 	        } catch ( SQLException e ) {
-	            System.err.println( "Fallo en la BBDD: " + e.getMessage() );
+	        	LOGGER.log(Level.WARNING, "Fallo en la BBDD: " + e.getMessage() );
 	        }
 	}
 }
