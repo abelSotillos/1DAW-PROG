@@ -23,14 +23,15 @@ public class Fichero {
 				String [] line = inputFile.nextLine().split(",");
 				int num=Integer.parseInt(line[1]);
 				Alumnos[i]=new Alumno(line[0],line[2],num);
-				LOGGER.log( Level.INFO, "Usuario "+line[2]+" Insertado en la BBDD" );
+				LOGGER.log( Level.FINE, "Usuario "+line[2]+" Creado" );
 				i++;
 			}
 			lineas=i;
+			LOGGER.log( Level.INFO, "Usuarios leídos:"+lineas );
 			inputFile.close();
 		} 
 		catch (FileNotFoundException e) {
-			LOGGER.log(Level.WARNING,"ERROR: no se puede abrir el fichero");
+			LOGGER.log(Level.SEVERE,"ERROR: no se puede abrir el fichero");
 		}
 	
 	}
@@ -43,6 +44,7 @@ public class Fichero {
 	public void conexion(String ip,String bd,String usu,String passwd ) {
 		 try {
 	            Connection conn = DriverManager.getConnection( "jdbc:oracle:thin:@//"+ip+"/"+bd,usu,passwd );
+	            LOGGER.log(Level.INFO, "Conexión exsitosa");
 	            for (int i = 0; i < lineas; i++) {
 		            Alumnos[i].insertarAlumno( conn );
 				}

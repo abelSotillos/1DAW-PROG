@@ -27,6 +27,6 @@ public class Alumno {
     	pstmt.setString(3, this.Modulo);
     	pstmt.executeUpdate();
     	pstmt.close();
-    	LOGGER.log( Level.INFO, "Usuario "+this.id1+" Insertado en la BBDD" );
+    	LOGGER.log( Level.FINE, "Usuario "+this.id1+" Insertado en la BBDD" );
     }
 }
