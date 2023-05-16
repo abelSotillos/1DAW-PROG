@@ -50,7 +50,7 @@ public class Fichero {
 				}
 	            conn.close();
 	        } catch ( SQLException e ) {
-	        	LOGGER.log(Level.WARNING, "Fallo en la BBDD: " + e.getMessage() );
+	        	LOGGER.log(Level.SEVERE, "Fallo en la BBDD: " + e.getMessage() );
 	        }
 	}
 }
