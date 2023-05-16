@@ -30,3 +30,4 @@ public class Alumno {
     	LOGGER.log( Level.FINE, "Usuario "+this.id1+" Insertado en la BBDD" );
     }
 }
+
